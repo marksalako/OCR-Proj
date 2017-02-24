@@ -19,6 +19,17 @@
 			</td>
 		</tr>
 	</table>
+
+	<form method="POST" action="upload" enctype="multipart/form-data" >
+		File:
+		<input type="file" name="file" id="file" /> <br/>
+		Destination:
+		<input type="text" value="/tmp" name="destination"/>
+		</br>
+		<input type="submit" value="Upload" name="upload" id="upload" />
+	</form>
+
+
 	<!-- Call SimpleServlet to get the "Hello World" message  -->
 	<script type="text/javascript" src="index.js"></script>
 </body>

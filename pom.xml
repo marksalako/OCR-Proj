@@ -42,6 +42,12 @@
             <artifactId>geronimo-servlet_3.0_spec</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>visual-recognition</artifactId>
+            <version>3.5.3</version>
+        </dependency>
     </dependencies>
 
     <build>

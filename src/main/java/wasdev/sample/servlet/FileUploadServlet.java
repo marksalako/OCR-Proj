@@ -17,14 +17,14 @@ import java.util.logging.Logger;
  * Created by marksalako on 24/02/2017.
  */
 
-    @WebServlet(name = "FileUploadServlet", urlPatterns = {"/upload"})
+    @WebServlet(name = "FileUploadServlet", urlPatterns = {"/upload"} )
     @MultipartConfig
     public class FileUploadServlet extends HttpServlet {
 
         private final static Logger LOGGER =
                 Logger.getLogger(FileUploadServlet.class.getCanonicalName());
 
-        protected void processRequest(HttpServletRequest request,
+        protected void doPost(HttpServletRequest request,
                                       HttpServletResponse response)
                 throws ServletException, IOException {
             response.setContentType("text/html;charset=UTF-8");
@@ -57,8 +57,12 @@ import java.util.logging.Logger;
                 OCRAlgo ocrAlgo = new OCRAlgo();
                 VisualClassification result = ocrAlgo.applyOCR(file);
 
-                writer.println("got result for file" + fileName + " result " + result.toString());
-            } catch (FileNotFoundException fne) {
+                writer.println("got result for file " + fileName + " result " + result.toString());
+                writer.println("warnings for file " + fileName + " result " + result.getWarnings());
+
+                response.setContentType("text/html");
+                response.getWriter().print("Hello Commerzbank!");
+            } catch ( FileNotFoundException fne) {
                 writer.println("You either did not specify a file to upload or are "
                         + "trying to upload a file to a protected or nonexistent "
                         + "location.");
@@ -66,6 +70,14 @@ import java.util.logging.Logger;
 
                 LOGGER.log(Level.SEVERE, "Problems during file upload. Error: {0}",
                         new Object[]{fne.getMessage()});
+            } catch ( Exception e) {
+                writer.println("You either did not specify a file to upload or are "
+                        + "trying to upload a file to a protected or nonexistent "
+                        + "location.");
+                writer.println("<br/> ERROR: " + e.getMessage());
+
+                LOGGER.log(Level.SEVERE, "Problems during file upload. Error: {0}",
+                        new Object[]{e.getMessage()});
             } finally {
                 if (out != null) {
                     out.close();

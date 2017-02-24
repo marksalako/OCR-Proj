@@ -17,7 +17,7 @@ public class OCRAlgo {
 
         System.out.println("Classify an image");
         ClassifyImagesOptions options = new ClassifyImagesOptions.Builder()
-                .images(new File("src/test/resources/visual_recognition/car.png"))
+                .images(file)
                 .build();
         VisualClassification result = service.classify(options).execute();
         System.out.println(result);

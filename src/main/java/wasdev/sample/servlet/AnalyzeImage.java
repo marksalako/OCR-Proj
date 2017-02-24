@@ -12,7 +12,7 @@ public class AnalyzeImage {
     public static final String SECRET_KEY = "Rj0k181Uko4uobYuM1MPCKGnh7uRw60o";
 
     public String analyze(String filePath) {
-        // 初始化一个OcrClient
+
         AipOcr client = new AipOcr(APP_ID, API_KEY, SECRET_KEY);
 
         String genFilePath = filePath;

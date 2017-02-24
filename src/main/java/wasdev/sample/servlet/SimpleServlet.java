@@ -6,6 +6,7 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassifi
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 
 import javax.servlet.ServletException;
@@ -32,17 +33,19 @@ public class SimpleServlet extends HttpServlet {
         VisualRecognition service = new VisualRecognition(VisualRecognition.VERSION_DATE_2016_05_20);
         service.setApiKey("<api-key>");
         try {
-        File file = new File(System.getProperty("user.dir"));
-response.getWriter().println(file.getAbsolutePath());
-        response.getWriter().println(Arrays.asList(file.list()));
-        System.out.println("Classify an image");
-
-
-            ClassifyImagesOptions options = new ClassifyImagesOptions.Builder()
-                    .images(new File("classes/IMG_3543.JPG"))
-                    .build();
-            VisualClassification result = service.classify(options).execute();
-            response.getWriter().print(result);
+        //File file = new File(System.getProperty("user.dir")+"/apps");
+//response.getWriter().println(file.getAbsolutePath());
+//        response.getWriter().println(Arrays.asList(file.list()));
+//        System.out.println("Classify an image");
+//            InputStream resourceAsStream = getClass().getResourceAsStream("images/IMG_3543.JPG");
+//int length = resourceAsStream.available();
+//            byte[] bytes  = new byte[length];
+//            resourceAsStream.read(bytes);
+//            ClassifyImagesOptions options = new ClassifyImagesOptions.Builder()
+//                    .images(bytes,"woof.JPG")
+//                    .build();
+//            VisualClassification result = service.classify(options).execute();
+//            response.getWriter().print(result);
         } catch (Exception e) {
             e.printStackTrace(response.getWriter());
         }

@@ -1,5 +1,6 @@
 package wasdev.sample.servlet;
 
+import com.google.gson.*;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassification;
 
 import javax.servlet.ServletException;
@@ -37,7 +38,9 @@ import java.util.logging.Logger;
             OutputStream out = null;
             InputStream filecontent = null;
             final PrintWriter writer = response.getWriter();
-
+            writer.println("<html><body>");
+writer.println("<img src=\"images/doggie.jpeg\"/>");
+            writer.println("<p>");
             try {
                 File file = new File(path + File.separator
                         + fileName);
@@ -50,26 +53,32 @@ import java.util.logging.Logger;
                 while ((read = filecontent.read(bytes)) != -1) {
                     out.write(bytes, 0, read);
                 }
-                writer.println("New file " + fileName + " created at " + path);
+                //writer.println("New file " + fileName + " created at " + path);
                 LOGGER.log(Level.INFO, "File{0}being uploaded to {1}",
                         new Object[]{fileName, path});
 
                 OCRAlgo ocrAlgo = new OCRAlgo();
                 VisualClassification result = ocrAlgo.applyOCR(file);
 
-                writer.println("got result for file " + fileName + " result " + result.toString());
-                writer.println("warnings for file " + fileName + " result " + result.getWarnings());
 
-                response.setContentType("text/html");
-                response.getWriter().print("Hello Commerzbank!");
-
-                writer.println("analyze result for file " + file.getAbsolutePath());
 
                 AnalyzeImage  analyzeImage = new AnalyzeImage();
                 String analyzeResult = analyzeImage.analyze(file.getAbsolutePath());
 
 
-                writer.println("got analyze result for file " + file.getAbsolutePath() + " analyzeresult " + analyzeResult.toString());
+                //writer.println("got analyze result for file " + file.getAbsolutePath() + " analyzeresult " + analyzeResult.toString());
+                JsonObject jsonObject = new JsonParser().parse(analyzeResult).getAsJsonObject();
+                JsonArray words_result = jsonObject.getAsJsonArray("words_result");
+                for (JsonElement jsonElement : words_result) {
+                    JsonObject word2 = jsonElement.getAsJsonObject();
+                    JsonPrimitive words =(JsonPrimitive) word2.get("words");
+                    String s4 = words.getAsString();
+                    writer.println(s4);
+                    writer.append("</br>");
+                }
+
+                writer.println("</p></body></html>");
+                //writer.println(analyzeResult.toString());
             } catch ( FileNotFoundException fne) {
                 writer.println("You either did not specify a file to upload or are "
                         + "trying to upload a file to a protected or nonexistent "

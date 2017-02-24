@@ -1,10 +1,9 @@
 <component name="libraryTable">
   <library name="aip-ocr-java-sdk-1">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../aip-ocr-java-sdk-1.1" />
+      <root url="jar://$PROJECT_DIR$/../../aip-ocr-java-sdk-1.1/ocr_sdk-1.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
-    <jarDirectory url="file://$PROJECT_DIR$/../aip-ocr-java-sdk-1.1" recursive="false" />
   </library>
 </component>

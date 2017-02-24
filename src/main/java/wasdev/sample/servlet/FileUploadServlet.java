@@ -62,6 +62,14 @@ import java.util.logging.Logger;
 
                 response.setContentType("text/html");
                 response.getWriter().print("Hello Commerzbank!");
+
+                writer.println("analyze result for file " + file.getAbsolutePath());
+
+                AnalyzeImage  analyzeImage = new AnalyzeImage();
+                String analyzeResult = analyzeImage.analyze(file.getAbsolutePath());
+
+
+                writer.println("got analyze result for file " + file.getAbsolutePath() + " analyzeresult " + analyzeResult.toString());
             } catch ( FileNotFoundException fne) {
                 writer.println("You either did not specify a file to upload or are "
                         + "trying to upload a file to a protected or nonexistent "

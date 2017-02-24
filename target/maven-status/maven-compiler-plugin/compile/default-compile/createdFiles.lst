@@ -1,3 +1,5 @@
 wasdev/sample/servlet/SimpleServlet.class
+wasdev/sample/servlet/AnalyzeImage.class
+wasdev/sample/servlet/Main.class
 wasdev/sample/servlet/FileUploadServlet.class
 wasdev/sample/servlet/OCRAlgo.class

@@ -2,7 +2,6 @@ package wasdev.sample.servlet;
 
 import com.baidu.aip.ocr.AipOcr;
 import java.util.*;
-import org.json.JSONObject;
 /**
  * Created by yeshu on 24/2/2017.
  */

@@ -1,0 +1,10 @@
+applications:
+- path: target/JavaHelloWorldApp.war
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: OCR Proj
+  host: OCR-Proj
+  disk_quota: 1024M
+  services:
+  - Visual Recognition-ic
